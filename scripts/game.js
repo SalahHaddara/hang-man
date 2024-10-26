@@ -32,9 +32,12 @@ function clickHandler(letter, letterElement) {
         updateWordDisplay(letter);
     } else {
         lives--;
-        //update hangman
+        displayHangmanPart(lives);
         if (lives === 0) {
-            alert("Game Over! The word was " + randomWord);
+            setTimeout(() => {
+                alert("Game Over! The word was " + randomWord);
+                location.reload();
+            }, 100);
         }
     }
 }
