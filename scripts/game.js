@@ -1,11 +1,12 @@
 var words = ["apple", "banana", "cherry", "date", "elderberry", "fig", "grape"];
+var lives = 6;
 
 function getRandomWord() {
     return words[Math.floor(Math.random() * words.length)];
 }
 
-lives = 6;
 var randomWord = getRandomWord();
+console.log(randomWord);
 var answerSection = document.getElementById("answer-section");
 var dashes = "-".repeat(randomWord.length);
 
@@ -14,17 +15,20 @@ answerSection.textContent = dashes;
 var lettersSelected = document.querySelectorAll('.letter');
 
 lettersSelected.forEach((letterElement) => {
-    lettersSelected.addEventListener('click', event => {
-        var letter = event.target.textContent;
+    letterElement.addEventListener('click', event => {
+        var letter = event.target.textContent.toLowerCase();
+        console.log(letter);
 
-        lettersSelected.style.opacity = '0.5';
-        lettersSelected.style.pointerEvents = 'none';
+        letterElement.style.opacity = '0.5';
+        letterElement.style.pointerEvents = 'none';
         clickHandler(letter, letterElement);
     })
 })
 
 function clickHandler(letter, letterElement) {
+    console.log("click handler activated " + letter);
     if (randomWord.includes(letter)) {
+        console.log("letter is corret");
         updateWordDisplay(letter);
     } else {
         lives--;
@@ -46,6 +50,6 @@ function updateWordDisplay(letter) {
     answerSection.textContent = displayedWord.join('');
 
     if (displayedWord.includes('-') === false) {
-        alert("You Guessed it!" + randomWord);
+        alert("You Guessed it! " + randomWord.toUpperCase());
     }
 }
