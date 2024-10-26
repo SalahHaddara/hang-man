@@ -6,7 +6,6 @@ function getRandomWord() {
 }
 
 var randomWord = getRandomWord();
-console.log(randomWord);
 var answerSection = document.getElementById("answer-section");
 var dashes = "-".repeat(randomWord.length);
 
@@ -17,7 +16,6 @@ var lettersSelected = document.querySelectorAll('.letter');
 lettersSelected.forEach((letterElement) => {
     letterElement.addEventListener('click', event => {
         var letter = event.target.textContent.toLowerCase();
-        console.log(letter);
 
         letterElement.style.opacity = '0.5';
         letterElement.style.pointerEvents = 'none';
@@ -25,10 +23,8 @@ lettersSelected.forEach((letterElement) => {
     })
 })
 
-function clickHandler(letter, letterElement) {
-    console.log("click handler activated " + letter);
+function clickHandler(letter) {
     if (randomWord.includes(letter)) {
-        console.log("letter is corret");
         updateWordDisplay(letter);
     } else {
         lives--;
